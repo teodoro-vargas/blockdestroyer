@@ -131,8 +131,10 @@
 		6B880D811713D1EE000737A4 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 6B880D801713D1EE000737A4 /* vec4.c */; };
 		6B880D861713D1EE000737A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B880D851713D1EE000737A4 /* main.m */; };
 		6B880D891713D1EE000737A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B880D881713D1EE000737A4 /* AppDelegate.m */; };
-		6B880D8C1713D1EE000737A4 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B880D8B1713D1EE000737A4 /* HelloWorldLayer.m */; };
 		6B880D8F1713D1EE000737A4 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B880D8E1713D1EE000737A4 /* IntroLayer.m */; };
+		6B880D971713D341000737A4 /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B880D961713D341000737A4 /* Menu.m */; };
+		6B880D9A1713DA9D000737A4 /* myfirstbutton_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B880D981713DA9D000737A4 /* myfirstbutton_selected.png */; };
+		6B880D9B1713DA9D000737A4 /* myfirstbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B880D991713DA9D000737A4 /* myfirstbutton.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -394,10 +396,12 @@
 		6B880D851713D1EE000737A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6B880D871713D1EE000737A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6B880D881713D1EE000737A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6B880D8A1713D1EE000737A4 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		6B880D8B1713D1EE000737A4 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		6B880D8D1713D1EE000737A4 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		6B880D8E1713D1EE000737A4 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		6B880D951713D341000737A4 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
+		6B880D961713D341000737A4 /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
+		6B880D981713DA9D000737A4 /* myfirstbutton_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myfirstbutton_selected.png; sourceTree = "<group>"; };
+		6B880D991713DA9D000737A4 /* myfirstbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myfirstbutton.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -458,13 +462,13 @@
 			children = (
 				6B880D871713D1EE000737A4 /* AppDelegate.h */,
 				6B880D881713D1EE000737A4 /* AppDelegate.m */,
-				6B880D8A1713D1EE000737A4 /* HelloWorldLayer.h */,
-				6B880D8B1713D1EE000737A4 /* HelloWorldLayer.m */,
 				6B880D8D1713D1EE000737A4 /* IntroLayer.h */,
 				6B880D8E1713D1EE000737A4 /* IntroLayer.m */,
 				6B880C101713D1EB000737A4 /* Resources */,
 				6B880C2A1713D1EB000737A4 /* libs */,
 				6B880D831713D1EE000737A4 /* Supporting Files */,
+				6B880D951713D341000737A4 /* Menu.h */,
+				6B880D961713D341000737A4 /* Menu.m */,
 			);
 			path = BlocksDestroyer;
 			sourceTree = "<group>";
@@ -472,6 +476,8 @@
 		6B880C101713D1EB000737A4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6B880D981713DA9D000737A4 /* myfirstbutton_selected.png */,
+				6B880D991713DA9D000737A4 /* myfirstbutton.png */,
 				6B880C111713D1EB000737A4 /* Default.png */,
 				6B880C131713D1EB000737A4 /* Default-Landscape~ipad.png */,
 				6B880C151713D1EB000737A4 /* fps_images.png */,
@@ -895,6 +901,8 @@
 				6B880C261713D1EB000737A4 /* Icon@2x.png in Resources */,
 				6B880C291713D1EB000737A4 /* iTunesArtwork in Resources */,
 				6B880D671713D1EE000737A4 /* ChangeLog in Resources */,
+				6B880D9A1713DA9D000737A4 /* myfirstbutton_selected.png in Resources */,
+				6B880D9B1713DA9D000737A4 /* myfirstbutton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1007,8 +1015,8 @@
 				6B880D811713D1EE000737A4 /* vec4.c in Sources */,
 				6B880D861713D1EE000737A4 /* main.m in Sources */,
 				6B880D891713D1EE000737A4 /* AppDelegate.m in Sources */,
-				6B880D8C1713D1EE000737A4 /* HelloWorldLayer.m in Sources */,
 				6B880D8F1713D1EE000737A4 /* IntroLayer.m in Sources */,
+				6B880D971713D341000737A4 /* Menu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
