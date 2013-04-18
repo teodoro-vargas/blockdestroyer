@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5DC83C84171CE6C0003CFCAD /* mainGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC83C83171CE6C0003CFCAD /* mainGame.m */; };
+		5DC83CCC171CF89F003CFCAD /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CC2171CF89E003CFCAD /* 1.png */; };
+		5DC83CCD171CF89F003CFCAD /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CC3171CF89E003CFCAD /* 2.png */; };
+		5DC83CCE171CF89F003CFCAD /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CC4171CF89E003CFCAD /* 3.png */; };
+		5DC83CCF171CF89F003CFCAD /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CC5171CF89E003CFCAD /* 4.png */; };
+		5DC83CD0171CF89F003CFCAD /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CC6171CF89E003CFCAD /* 5.png */; };
+		5DC83CD1171CF89F003CFCAD /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CC7171CF89E003CFCAD /* 6.png */; };
+		5DC83CD2171CF89F003CFCAD /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CC8171CF89E003CFCAD /* 7.png */; };
+		5DC83CD3171CF89F003CFCAD /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CC9171CF89E003CFCAD /* 8.png */; };
+		5DC83CD4171CF89F003CFCAD /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CCA171CF89F003CFCAD /* 9.png */; };
+		5DC83CD5171CF89F003CFCAD /* 10.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CCB171CF89F003CFCAD /* 10.png */; };
+		5DC83CD7171D0809003CFCAD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CD6171D0809003CFCAD /* Default-568h@2x.png */; };
 		6B880BFE1713D1EB000737A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B880BFD1713D1EB000737A4 /* QuartzCore.framework */; };
 		6B880C001713D1EB000737A4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B880BFF1713D1EB000737A4 /* OpenGLES.framework */; };
 		6B880C021713D1EB000737A4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B880C011713D1EB000737A4 /* OpenAL.framework */; };
@@ -138,6 +150,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5DC83C82171CE6C0003CFCAD /* mainGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mainGame.h; sourceTree = "<group>"; };
+		5DC83C83171CE6C0003CFCAD /* mainGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mainGame.m; sourceTree = "<group>"; };
+		5DC83CC2171CF89E003CFCAD /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		5DC83CC3171CF89E003CFCAD /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		5DC83CC4171CF89E003CFCAD /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		5DC83CC5171CF89E003CFCAD /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		5DC83CC6171CF89E003CFCAD /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		5DC83CC7171CF89E003CFCAD /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
+		5DC83CC8171CF89E003CFCAD /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
+		5DC83CC9171CF89E003CFCAD /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
+		5DC83CCA171CF89F003CFCAD /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
+		5DC83CCB171CF89F003CFCAD /* 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10.png; sourceTree = "<group>"; };
+		5DC83CD6171D0809003CFCAD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6B880BFA1713D1EB000737A4 /* BlocksDestroyer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocksDestroyer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B880BFD1713D1EB000737A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6B880BFF1713D1EB000737A4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -427,6 +452,7 @@
 		6B880BF11713D1EB000737A4 = {
 			isa = PBXGroup;
 			children = (
+				5DC83CD6171D0809003CFCAD /* Default-568h@2x.png */,
 				6B880C0F1713D1EB000737A4 /* BlocksDestroyer */,
 				6B880BFC1713D1EB000737A4 /* Frameworks */,
 				6B880BFB1713D1EB000737A4 /* Products */,
@@ -468,6 +494,8 @@
 				6B880C2A1713D1EB000737A4 /* libs */,
 				6B880D831713D1EE000737A4 /* Supporting Files */,
 				6B880D951713D341000737A4 /* Menu.h */,
+				5DC83C82171CE6C0003CFCAD /* mainGame.h */,
+				5DC83C83171CE6C0003CFCAD /* mainGame.m */,
 				6B880D961713D341000737A4 /* Menu.m */,
 			);
 			path = BlocksDestroyer;
@@ -476,6 +504,16 @@
 		6B880C101713D1EB000737A4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5DC83CC2171CF89E003CFCAD /* 1.png */,
+				5DC83CC3171CF89E003CFCAD /* 2.png */,
+				5DC83CC4171CF89E003CFCAD /* 3.png */,
+				5DC83CC5171CF89E003CFCAD /* 4.png */,
+				5DC83CC6171CF89E003CFCAD /* 5.png */,
+				5DC83CC7171CF89E003CFCAD /* 6.png */,
+				5DC83CC8171CF89E003CFCAD /* 7.png */,
+				5DC83CC9171CF89E003CFCAD /* 8.png */,
+				5DC83CCA171CF89F003CFCAD /* 9.png */,
+				5DC83CCB171CF89F003CFCAD /* 10.png */,
 				6B880D981713DA9D000737A4 /* myfirstbutton_selected.png */,
 				6B880D991713DA9D000737A4 /* myfirstbutton.png */,
 				6B880C111713D1EB000737A4 /* Default.png */,
@@ -903,6 +941,17 @@
 				6B880D671713D1EE000737A4 /* ChangeLog in Resources */,
 				6B880D9A1713DA9D000737A4 /* myfirstbutton_selected.png in Resources */,
 				6B880D9B1713DA9D000737A4 /* myfirstbutton.png in Resources */,
+				5DC83CCC171CF89F003CFCAD /* 1.png in Resources */,
+				5DC83CCD171CF89F003CFCAD /* 2.png in Resources */,
+				5DC83CCE171CF89F003CFCAD /* 3.png in Resources */,
+				5DC83CCF171CF89F003CFCAD /* 4.png in Resources */,
+				5DC83CD0171CF89F003CFCAD /* 5.png in Resources */,
+				5DC83CD1171CF89F003CFCAD /* 6.png in Resources */,
+				5DC83CD2171CF89F003CFCAD /* 7.png in Resources */,
+				5DC83CD3171CF89F003CFCAD /* 8.png in Resources */,
+				5DC83CD4171CF89F003CFCAD /* 9.png in Resources */,
+				5DC83CD5171CF89F003CFCAD /* 10.png in Resources */,
+				5DC83CD7171D0809003CFCAD /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,6 +1066,7 @@
 				6B880D891713D1EE000737A4 /* AppDelegate.m in Sources */,
 				6B880D8F1713D1EE000737A4 /* IntroLayer.m in Sources */,
 				6B880D971713D341000737A4 /* Menu.m in Sources */,
+				5DC83C84171CE6C0003CFCAD /* mainGame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1120,6 +1170,7 @@
 				6B880D941713D1EE000737A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
