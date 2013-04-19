@@ -12,14 +12,19 @@
 
 #define kMinimumGestureLength 10
 #define kMaximumVariance 5
+#define ROWS 6
+#define COLUMNS 5
+#define NUM_SPRITES 10
+#define WIDTH_SPRITE 60
+#define OFFSET 35
+#define DIST_CENTERS 65
 
 @interface mainGame : CCLayer<GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
 {
     CCLabelTTF *points_label;
     CCLabelTTF *timer_label;
-    CCSprite *blocks_game[6][5];
-    int indexGameBlocks[6][5];
-
+    CCSprite *blocks_game[ROWS][COLUMNS];
+    int indexGameBlocks[ROWS][COLUMNS];
 }
 @property int pointsCounter;
 @property int timerCounter;
@@ -28,9 +33,21 @@
 @property BOOL touchInSpriteRect;
 @property NSUInteger orientation;
 @property CGRect initialRect;
+@property NSInteger activeColumn;
+@property NSInteger activeRow;
 
 
 // Returns a CCScene that contains the mainGame 
 + (CCScene *)scene;
+
+- (id)init;
+- (CCSprite *)touchedSprite:(CGPoint)location;
+- (void)registerWithTouchDispatcher;
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
+- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event;
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event;
+- (NSInteger)nearColumn:(CGPoint)location forRow:(NSInteger)row;
+- (NSInteger)nearRow:(CGPoint)location forColumn:(NSInteger)column;
+- (void)debug;
 
 @end
