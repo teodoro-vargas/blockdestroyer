@@ -15,6 +15,9 @@
 #define ROWS 6
 #define COLUMNS 5
 #define NUM_SPRITES 10
+#define WIDTH_SPRITE 60
+#define OFFSET 35
+#define DIST_CENTERS 65
 
 @interface mainGame : CCLayer<GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
 {

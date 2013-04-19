@@ -95,7 +95,7 @@ CCSprite *copySprite;
                 //Create and initialize the sprite
                 NSString *block_name = [NSString stringWithFormat:@"%i.png", indexGameBlocks[i][j]];
                 CCSprite *block = [CCSprite spriteWithFile:block_name];
-                [block setPosition:ccp(j * 60 + 32, i * 60 + 32)];
+                [block setPosition:ccp(j * WIDTH_SPRITE + OFFSET, i * WIDTH_SPRITE + OFFSET)];
                 [self addChild:block];
                 //Add the sprite to a temporal array
                 blocks_game[i][j] = block;
@@ -177,7 +177,7 @@ CCSprite *copySprite;
         dy = touchLocation.y - lastLocation.y;
         if (self.orientation == 0) {
             for (i = 0; i < COLUMNS; i++) {
-                finalPosition.x = touchLocation.x + (i - self.activeColumn) * 62;
+                finalPosition.x = touchLocation.x + (i - self.activeColumn) * DIST_CENTERS;
                 blocks_game[self.activeRow][i].position = finalPosition;
             }
             if (dx > 0) {
@@ -187,7 +187,7 @@ CCSprite *copySprite;
             }
         } else if (self.orientation == 1) {
             for (i = 0; i < ROWS; i++) {
-                finalPosition.y = touchLocation.y + (i - self.activeRow) * 62;
+                finalPosition.y = touchLocation.y + (i - self.activeRow) * DIST_CENTERS;
                 blocks_game[i][self.activeColumn].position = finalPosition;
             }
             if (dy > 0) {
@@ -234,20 +234,16 @@ CCSprite *copySprite;
     // Horizontal
     if (self.orientation == 0) {
         near = [self nearColumn:touchLocation forRow:self.activeRow];
-        displacement = near - self.activeColumn;
-        finalPosition.y = self.activeRow * 60 + 32;
+        //
+        displacement = self.activeColumn - near;
+        finalPosition.y = self.activeRow * WIDTH_SPRITE + OFFSET;
         for (i = 0; i < COLUMNS; i++) {
             tempIndex[i] = indexGameBlocks[self.activeRow][i];
             tempSprites[i] = blocks_game[self.activeRow][i];
+            blocks_game[self.activeRow][i] = nil;
         }
         if (displacement < 0) {
             // Move everything to the left
-            for (i = 0; i < COLUMNS; i++) {
-                j = (displacement + i + COLUMNS) % COLUMNS;
-                finalPosition.x = j * 60 + 32;
-                [blocks_game[self.activeRow][i] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
-                blocks_game[self.activeRow][i] = nil;
-            }
             for (i = 0; i < COLUMNS; i++) {
                 j = (displacement + i + COLUMNS) % COLUMNS;
                 indexGameBlocks[self.activeRow][i] = tempIndex[j];
@@ -255,14 +251,12 @@ CCSprite *copySprite;
                 blocks_game[self.activeRow][i] = tempSprites[j];
                 tempSprites[j] = nil;
             }
+            for (i = 0; i < COLUMNS; i++) {
+                finalPosition.x = i * WIDTH_SPRITE + OFFSET;
+                [blocks_game[self.activeRow][i] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
+            }
         } else {
             // Move everything to the right
-            for (i = 0; i < COLUMNS; i++) {
-                j = ((displacement + i) % COLUMNS);
-                finalPosition.x = j * 60 + 32;
-                [blocks_game[self.activeRow][i] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
-                blocks_game[self.activeRow][i] = nil;
-            }
             for (i = 0; i < COLUMNS; i++) {
                 j = (displacement + i) % COLUMNS;
                 indexGameBlocks[self.activeRow][i] = tempIndex[j];
@@ -270,46 +264,48 @@ CCSprite *copySprite;
                 blocks_game[self.activeRow][i] = tempSprites[j];
                 tempSprites[j] = nil;
             }
+            for (i = 0; i < COLUMNS; i++) {
+                finalPosition.x = i * WIDTH_SPRITE + OFFSET;
+                [blocks_game[self.activeRow][i] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
+            }
         }
         
         // Vertical
     } else if (self.orientation == 1) {
         near = [self nearRow:touchLocation forColumn:self.activeColumn];
-        displacement = near - self.activeRow;
-        finalPosition.x = self.activeColumn * 60 + 32;
+        //
+        displacement = self.activeRow - near;
+        finalPosition.x = self.activeColumn * WIDTH_SPRITE + OFFSET;
         for (i = 0; i < ROWS; i++) {
             tempIndex[i] = indexGameBlocks[i][self.activeColumn];
             tempSprites[i] = blocks_game[i][self.activeColumn];
+            blocks_game[i][self.activeColumn] = nil;
         }
         if (displacement < 0) {
             // Move everything down
             for (i = 0; i < ROWS; i++) {
                 j = (displacement + i + ROWS) % ROWS;
-                finalPosition.y = j * 60 + 32;
-                [blocks_game[i][self.activeColumn] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
-                blocks_game[i][self.activeColumn] = nil;
-            }
-            for (i = 0; i < ROWS; i++) {
-                j = (displacement + i + ROWS) % ROWS;
                 indexGameBlocks[i][self.activeColumn] = tempIndex[j];
                 tempIndex[j] = 0;
                 blocks_game[i][self.activeColumn] = tempSprites[j];
                 tempSprites[j] = nil;
+            }
+            for (i = 0; i < ROWS; i++) {
+                finalPosition.y = i * WIDTH_SPRITE + OFFSET;
+                [blocks_game[i][self.activeColumn] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
             }
         } else {
             // Move everything up
             for (i = 0; i < ROWS; i++) {
                 j = (displacement + i) % ROWS;
-                finalPosition.y = j * 60 + 32;
-                [blocks_game[i][self.activeColumn] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
-                blocks_game[i][self.activeColumn] = nil;
-            }
-            for (i = 0; i < ROWS; i++) {
-                j = (displacement + i) % ROWS;
                 indexGameBlocks[i][self.activeColumn] = tempIndex[j];
                 tempIndex[j] = 0;
                 blocks_game[i][self.activeColumn] = tempSprites[j];
                 tempSprites[j] = nil;
+            }
+            for (i = 0; i < ROWS; i++) {
+                finalPosition.y = i * WIDTH_SPRITE + OFFSET;
+                [blocks_game[i][self.activeColumn] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
             }
         }
     }
@@ -322,9 +318,6 @@ CCSprite *copySprite;
     touchedBlock.scale /= 1.1;
     //[self removeChild:copySprite cleanup:YES];
     //copySprite = nil;
-    
-    // DEBUG
-    [self debug];
 }
 
 - (NSInteger)nearColumn:(CGPoint)location forRow:(NSInteger)row
@@ -361,10 +354,17 @@ CCSprite *copySprite;
 
 - (void)debug
 {
-    NSInteger i, j;
+    int i, j;
     for (i = 0; i < ROWS; i++) {
         for (j = 0; j < COLUMNS; j++) {
             printf("%d ", indexGameBlocks[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\nDirecciones:\n");
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLUMNS; j++) {
+            printf("%p ", blocks_game[i][j]);
         }
         printf("\n");
     }
