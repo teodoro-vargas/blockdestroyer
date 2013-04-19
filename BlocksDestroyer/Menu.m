@@ -61,14 +61,13 @@
     return self;
 }
 
--(void) makeTransition:(ccTime)dt{
-    [[CCDirector sharedDirector] replaceScene: [CCTransitionFade transitionWithDuration:1.0 scene:[mainGame scene]]];
-}
-
 - (void)newGame:(id)sender
 {
-    //in one second transition to the new scene
-    [self scheduleOnce:@selector(makeTransition :) delay:0];
+    [[CCDirector sharedDirector] sendCleanupToScene];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
+                                               transitionWithDuration:1
+                                               scene:[mainGame node]]
+     ];
 }
 
 - (void)instructions:(id)sender

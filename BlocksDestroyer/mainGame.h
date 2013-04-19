@@ -15,14 +15,20 @@
 
 @interface mainGame : CCLayer<GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
 {
+    CCLabelTTF *points_label;
+    CCLabelTTF *timer_label;
     CCSprite *blocks_game[6][5];
     int indexGameBlocks[6][5];
+
 }
+@property int pointsCounter;
+@property int timerCounter;
 @property CGPoint firstTouch;
 @property BOOL inMovement;
 @property BOOL touchInSpriteRect;
 @property NSUInteger orientation;
 @property CGRect initialRect;
+
 
 // Returns a CCScene that contains the mainGame 
 + (CCScene *)scene;
