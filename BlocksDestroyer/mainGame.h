@@ -15,7 +15,8 @@
 
 @interface mainGame : CCLayer<GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
 {
-    CCSprite * blocks_game[6][5];
+    CCSprite *blocks_game[6][5];
+    int indexGameBlocks[6][5];
 }
 @property CGPoint firstTouch;
 @property BOOL inMovement;

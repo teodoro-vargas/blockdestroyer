@@ -15,9 +15,7 @@
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
-NSMutableArray *gameBlocks;
-int indexGameBlocks[6][5];
-CCSprite * touchedBlock;
+CCSprite *touchedBlock;
 
 #pragma mark - mainGame
 
@@ -44,19 +42,16 @@ CCSprite * touchedBlock;
     // Always call 'super' init
     // Apple recommends to re-assign 'self' with the "super's" return value
     if ((self = [super init])) {
-        //Set the capacity of the array
-        gameBlocks = [[NSMutableArray alloc] initWithCapacity: 5];
-        
         //Fill the array with the first horizontal line blocks
         int indexAnt = 0;
         int random = 0;
-        for(int i=0; i<6; i++){
+        for (int i = 0; i < 6; i++) {
             //Generate the random sprite
             random = (arc4random() % 9) + 1;
-            if(random != indexAnt){
+            if (random != indexAnt) {
                 indexGameBlocks[i][0] = random;
                 indexAnt = random;
-            }else{
+            } else {
                 //If if the same number, have to go back to generete the random again
                 i--;
             }
@@ -64,35 +59,35 @@ CCSprite * touchedBlock;
         
         indexAnt = indexGameBlocks[0][0];
         //Fill the first vertical line of blocks
-        for(int j=1; j<5; j++){
+        for (int j = 1; j < 5; j++) {
             //Generate the random sprite
             random = (arc4random() % 9) + 1;
-            if(random != indexAnt){
+            if (random != indexAnt) {
                 indexGameBlocks[0][j] = random;
-            }else{
+            } else {
                 j--;
             }
         }
         
         //FIll all the other element arrays
-        for(int i=1; i<6; i++){
-            for (int j=1; j<5; j++) {
+        for (int i = 1; i < 6; i++) {
+            for (int j = 1; j < 5; j++) {
                 random = (arc4random() % 9) + 1;
-                if ((random != indexGameBlocks[i][j-1]) && (random != indexGameBlocks[i-1][j])) {
+                if ((random != indexGameBlocks[i][j - 1]) && (random != indexGameBlocks[i - 1][j])) {
                     indexGameBlocks[i][j] = random;
-                }else{
+                } else {
                     j--;
                 }
             }
         }
         
         //Create a temporal array to add the sprites for each line
-        for(int i= 0; i<6; i++){
-            for (int j=0; j<5; j++) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 5; j++) {
                 //Create and initialize the sprite
-                NSString * block_name = [NSString stringWithFormat:@"%i.png", indexGameBlocks[i][j]+1];
-                CCSprite * block = [CCSprite spriteWithFile:block_name];
-                [block setPosition:ccp((j+1)*57, (i+1)*57)];
+                NSString *block_name = [NSString stringWithFormat:@"%i.png", indexGameBlocks[i][j] + 1];
+                CCSprite *block = [CCSprite spriteWithFile:block_name];
+                [block setPosition:ccp((j + 1) * 57, (i + 1) * 57)];
                 [self addChild:block];
                 //Add the sprite to a temporal array
                 blocks_game[i][j] = block;
@@ -108,11 +103,11 @@ CCSprite * touchedBlock;
 
 /*This method receives the window point where that user touched and returns the touched sprite, if
     touched one*/
- -(CCSprite *) touchedSprite:(CGPoint ) location {
-    for (int i=0; i<6; i++) {
-        for (int j=0; j<5; j++) {
+- (CCSprite *)touchedSprite:(CGPoint ) location {
+    for (int i = 0; i < 6; i++) {
+        for (int j=0; j < 5; j++) {
             //If the point is inside the rect, return the sprite
-            if(CGRectContainsPoint([blocks_game[i][j] boundingBox], location)){
+            if(CGRectContainsPoint([blocks_game[i][j] boundingBox], location)) {
                 return blocks_game[i][j];
             }
         }
@@ -225,13 +220,13 @@ CCSprite * touchedBlock;
 
 #pragma mark GameKit delegate
 
--(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
+- (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
 {
 	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
 	[[app navController] dismissModalViewControllerAnimated:YES];
 }
 
--(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
 {
 	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
 	[[app navController] dismissModalViewControllerAnimated:YES];
