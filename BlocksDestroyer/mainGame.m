@@ -11,17 +11,25 @@
 #import "CCTouchDelegateProtocol.h"
 #import "CCTouchDispatcher.h"
 #include <stdlib.h>
+#include <string.h>
 
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
 CCSprite *touchedBlock;
+CCSprite *copySprite;
 
 #pragma mark - mainGame
 
 
 @implementation mainGame
-@synthesize firstTouch, initialRect, inMovement, touchInSpriteRect, orientation;
+@synthesize firstTouch;
+@synthesize initialRect;
+@synthesize inMovement;
+@synthesize touchInSpriteRect;
+@synthesize orientation;
+@synthesize activeColumn;
+@synthesize activeRow;
 
 // Helper class method that creates a Scene with the Menu as the only child
 + (CCScene *)scene
@@ -45,9 +53,9 @@ CCSprite *touchedBlock;
         //Fill the array with the first horizontal line blocks
         int indexAnt = 0;
         int random = 0;
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < ROWS; i++) {
             //Generate the random sprite
-            random = (arc4random() % 9) + 1;
+            random = (arc4random() % NUM_SPRITES) + 1;
             if (random != indexAnt) {
                 indexGameBlocks[i][0] = random;
                 indexAnt = random;
@@ -59,9 +67,9 @@ CCSprite *touchedBlock;
         
         indexAnt = indexGameBlocks[0][0];
         //Fill the first vertical line of blocks
-        for (int j = 1; j < 5; j++) {
+        for (int j = 1; j < COLUMNS; j++) {
             //Generate the random sprite
-            random = (arc4random() % 9) + 1;
+            random = (arc4random() % NUM_SPRITES) + 1;
             if (random != indexAnt) {
                 indexGameBlocks[0][j] = random;
             } else {
@@ -69,10 +77,10 @@ CCSprite *touchedBlock;
             }
         }
         
-        //FIll all the other element arrays
-        for (int i = 1; i < 6; i++) {
-            for (int j = 1; j < 5; j++) {
-                random = (arc4random() % 9) + 1;
+        // Fill all the other element arrays
+        for (int i = 1; i < ROWS; i++) {
+            for (int j = 1; j < COLUMNS; j++) {
+                random = (arc4random() % NUM_SPRITES) + 1;
                 if ((random != indexGameBlocks[i][j - 1]) && (random != indexGameBlocks[i - 1][j])) {
                     indexGameBlocks[i][j] = random;
                 } else {
@@ -81,13 +89,13 @@ CCSprite *touchedBlock;
             }
         }
         
-        //Create a temporal array to add the sprites for each line
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 5; j++) {
+        // Create a temporal array to add the sprites for each line
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLUMNS; j++) {
                 //Create and initialize the sprite
-                NSString *block_name = [NSString stringWithFormat:@"%i.png", indexGameBlocks[i][j] + 1];
+                NSString *block_name = [NSString stringWithFormat:@"%i.png", indexGameBlocks[i][j]];
                 CCSprite *block = [CCSprite spriteWithFile:block_name];
-                [block setPosition:ccp((j + 1) * 57, (i + 1) * 57)];
+                [block setPosition:ccp(j * 60 + 32, i * 60 + 32)];
                 [self addChild:block];
                 //Add the sprite to a temporal array
                 blocks_game[i][j] = block;
@@ -101,13 +109,16 @@ CCSprite *touchedBlock;
 }
 
 
-/*This method receives the window point where that user touched and returns the touched sprite, if
-    touched one*/
-- (CCSprite *)touchedSprite:(CGPoint ) location {
-    for (int i = 0; i < 6; i++) {
-        for (int j=0; j < 5; j++) {
+/* This method receives the window point where that user touched and returns the touched sprite, if
+    touched one */
+- (CCSprite *)touchedSprite:(CGPoint)location
+{
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLUMNS; j++) {
             //If the point is inside the rect, return the sprite
             if(CGRectContainsPoint([blocks_game[i][j] boundingBox], location)) {
+                self.activeRow = i;
+                self.activeColumn = j;
                 return blocks_game[i][j];
             }
         }
@@ -118,7 +129,7 @@ CCSprite *touchedBlock;
 
 -(void) registerWithTouchDispatcher
 {
-        [[[CCDirector sharedDirector] touchDispatcher]
+    [[[CCDirector sharedDirector] touchDispatcher]
          addTargetedDelegate:self priority:0
          swallowsTouches:YES];
 }
@@ -133,7 +144,7 @@ CCSprite *touchedBlock;
     self.touchInSpriteRect = NO;
     touchLocation = [self convertTouchToNodeSpace:touch];
     touchedBlock = [self touchedSprite:touchLocation];
-    if(touchedBlock){
+    if (touchedBlock){
         blocksSize = touchedBlock.textureRect.size;
         self.initialRect = CGRectMake(touchedBlock.position.x - blocksSize.width / 2,
                                       touchedBlock.position.y - blocksSize.height / 2,
@@ -150,6 +161,7 @@ CCSprite *touchedBlock;
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    int i;
     float dx, dy;
     CGPoint touchLocation, lastLocation, origin, finalPosition;
     CGSize size;
@@ -157,35 +169,36 @@ CCSprite *touchedBlock;
         return;
     }
     // Now, we start the movement
+    touchLocation = [self convertTouchToNodeSpace:touch];
+    lastLocation = [touch previousLocationInView:[touch view]];
     if (self.inMovement) {
-        touchLocation = [self convertTouchToNodeSpace:touch];
-        lastLocation = [touch previousLocationInView:[touch view]];
         finalPosition = touchedBlock.position;
         dx = touchLocation.x - lastLocation.x;
         dy = touchLocation.y - lastLocation.y;
         if (self.orientation == 0) {
-            finalPosition.x = touchLocation.x;
+            for (i = 0; i < COLUMNS; i++) {
+                finalPosition.x = touchLocation.x + (i - self.activeColumn) * 62;
+                blocks_game[self.activeRow][i].position = finalPosition;
+            }
             if (dx > 0) {
-                NSLog(@"Moviendose horizontal a la derecha");
+                //NSLog(@"Moviendose horizontal a la derecha");
             } else if (dx < 0) {
-                NSLog(@"Moviendose horizontal a la izquierda");
+                //NSLog(@"Moviendose horizontal a la izquierda");
             }
         } else if (self.orientation == 1) {
-            finalPosition.y = touchLocation.y;
+            for (i = 0; i < ROWS; i++) {
+                finalPosition.y = touchLocation.y + (i - self.activeRow) * 62;
+                blocks_game[i][self.activeColumn].position = finalPosition;
+            }
             if (dy > 0) {
-                NSLog(@"Moviendose vertical hacia arriba");
+                // NSLog(@"Moviendose vertical hacia arriba");
             } else {
-                NSLog(@"Moviendose vertical hacia abajo");
+                // NSLog(@"Moviendose vertical hacia abajo");
             }
         } else {
             NSLog(@"Direccion no especificada");
         }
-        if (self.orientation != 2) {
-            touchedBlock.position = finalPosition;
-        }
     } else {
-        touchLocation = [self convertTouchToNodeSpace:touch];
-        lastLocation = [touch previousLocationInView:[touch view]];
         origin = self.initialRect.origin;
         size = self.initialRect.size;
         
@@ -212,10 +225,150 @@ CCSprite *touchedBlock;
 // move the sprite wherever the touch ends
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    int i, j, near, displacement, tempIndex[ROWS];
+    CGPoint touchLocation, finalPosition;
+    CCSprite *tempSprites[ROWS];
+
+    // Get the last touch location
+    touchLocation = [self convertTouchToNodeSpace:touch];
+    // Horizontal
+    if (self.orientation == 0) {
+        near = [self nearColumn:touchLocation forRow:self.activeRow];
+        displacement = near - self.activeColumn;
+        finalPosition.y = self.activeRow * 60 + 32;
+        for (i = 0; i < COLUMNS; i++) {
+            tempIndex[i] = indexGameBlocks[self.activeRow][i];
+            tempSprites[i] = blocks_game[self.activeRow][i];
+        }
+        if (displacement < 0) {
+            // Move everything to the left
+            for (i = 0; i < COLUMNS; i++) {
+                j = (displacement + i + COLUMNS) % COLUMNS;
+                finalPosition.x = j * 60 + 32;
+                [blocks_game[self.activeRow][i] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
+                blocks_game[self.activeRow][i] = nil;
+            }
+            for (i = 0; i < COLUMNS; i++) {
+                j = (displacement + i + COLUMNS) % COLUMNS;
+                indexGameBlocks[self.activeRow][i] = tempIndex[j];
+                tempIndex[j] = 0;
+                blocks_game[self.activeRow][i] = tempSprites[j];
+                tempSprites[j] = nil;
+            }
+        } else {
+            // Move everything to the right
+            for (i = 0; i < COLUMNS; i++) {
+                j = ((displacement + i) % COLUMNS);
+                finalPosition.x = j * 60 + 32;
+                [blocks_game[self.activeRow][i] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
+                blocks_game[self.activeRow][i] = nil;
+            }
+            for (i = 0; i < COLUMNS; i++) {
+                j = (displacement + i) % COLUMNS;
+                indexGameBlocks[self.activeRow][i] = tempIndex[j];
+                tempIndex[j] = 0;
+                blocks_game[self.activeRow][i] = tempSprites[j];
+                tempSprites[j] = nil;
+            }
+        }
+        
+        // Vertical
+    } else if (self.orientation == 1) {
+        near = [self nearRow:touchLocation forColumn:self.activeColumn];
+        displacement = near - self.activeRow;
+        finalPosition.x = self.activeColumn * 60 + 32;
+        for (i = 0; i < ROWS; i++) {
+            tempIndex[i] = indexGameBlocks[i][self.activeColumn];
+            tempSprites[i] = blocks_game[i][self.activeColumn];
+        }
+        if (displacement < 0) {
+            // Move everything down
+            for (i = 0; i < ROWS; i++) {
+                j = (displacement + i + ROWS) % ROWS;
+                finalPosition.y = j * 60 + 32;
+                [blocks_game[i][self.activeColumn] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
+                blocks_game[i][self.activeColumn] = nil;
+            }
+            for (i = 0; i < ROWS; i++) {
+                j = (displacement + i + ROWS) % ROWS;
+                indexGameBlocks[i][self.activeColumn] = tempIndex[j];
+                tempIndex[j] = 0;
+                blocks_game[i][self.activeColumn] = tempSprites[j];
+                tempSprites[j] = nil;
+            }
+        } else {
+            // Move everything up
+            for (i = 0; i < ROWS; i++) {
+                j = (displacement + i) % ROWS;
+                finalPosition.y = j * 60 + 32;
+                [blocks_game[i][self.activeColumn] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
+                blocks_game[i][self.activeColumn] = nil;
+            }
+            for (i = 0; i < ROWS; i++) {
+                j = (displacement + i) % ROWS;
+                indexGameBlocks[i][self.activeColumn] = tempIndex[j];
+                tempIndex[j] = 0;
+                blocks_game[i][self.activeColumn] = tempSprites[j];
+                tempSprites[j] = nil;
+            }
+        }
+    }
+    
     self.inMovement = false;
     self.touchInSpriteRect = NO;
-    [touchedBlock stopAllActions];
+    self.activeColumn = 0;
+    self.activeRow = 0;
+    //[touchedBlock stopAllActions];
     touchedBlock.scale /= 1.1;
+    //[self removeChild:copySprite cleanup:YES];
+    //copySprite = nil;
+    
+    // DEBUG
+    [self debug];
+}
+
+- (NSInteger)nearColumn:(CGPoint)location forRow:(NSInteger)row
+{
+    NSInteger x, i, c;
+    CGFloat diff, minimum;
+    minimum = 10000;
+    for (i = 0; i < COLUMNS; i++) {
+        x = i * 60 + 32;
+        diff = fabsf(x - location.x);
+        if (diff < minimum) {
+            c = i;
+            minimum = diff;
+        }
+    }
+    return c;
+}
+
+- (NSInteger)nearRow:(CGPoint)location forColumn:(NSInteger)column
+{
+    NSInteger y, i, r;
+    CGFloat diff, minimum;
+    minimum = 10000;
+    for (i = 0; i < ROWS; i++) {
+        y = i * 60 + 32;
+        diff = fabsf(y - location.y);
+        if (diff < minimum) {
+            r = i;
+            minimum = diff;
+        }
+    }
+    return r;
+}
+
+- (void)debug
+{
+    NSInteger i, j;
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLUMNS; j++) {
+            printf("%d ", indexGameBlocks[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
 }
 
 #pragma mark GameKit delegate
