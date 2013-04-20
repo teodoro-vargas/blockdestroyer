@@ -29,7 +29,7 @@
         [CCMenuItemFont setFontSize:36];
         
         CCMenuItem *PlayAgain= [CCMenuItemFont itemWithString:@"Play again"
-                                                    target:self selector:@selector(PLayAgain:)];
+                                                       target:self selector:@selector(PlayAgain:)];
         CCMenuItem *Quit = [CCMenuItemFont itemWithString:@"Back to menu"
                                                    target:self selector:@selector(GoToMainMenu:)];
         //Set the position of the menu title and add it to the layer scene
@@ -46,7 +46,6 @@
 }
 
 -(void) PlayAgain: (id) sender {
-    [[CCDirector sharedDirector] sendCleanupToScene];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
                                                transitionWithDuration:1
                                                scene:[mainGame node]]
@@ -54,7 +53,6 @@
 }
 
 -(void) GoToMainMenu: (id) sender {
-    [[CCDirector sharedDirector] sendCleanupToScene];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
                                                transitionWithDuration:1
                                                scene:[Menu node]]

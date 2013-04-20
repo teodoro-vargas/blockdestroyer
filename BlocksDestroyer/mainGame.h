@@ -49,5 +49,6 @@
 - (NSInteger)nearColumn:(CGPoint)location forRow:(NSInteger)row;
 - (NSInteger)nearRow:(CGPoint)location forColumn:(NSInteger)column;
 - (void)debug;
+- (void)dealloc;
 
 @end

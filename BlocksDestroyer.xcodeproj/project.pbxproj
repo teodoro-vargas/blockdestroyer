@@ -12,7 +12,6 @@
 		5D1719631720E83C00A96E69 /* littleClock.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D1719611720E83C00A96E69 /* littleClock.png */; };
 		5D407CD1172102A1004D72B3 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D407CD0172102A1004D72B3 /* pause.png */; };
 		5D407CD41721040C004D72B3 /* PauseGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D407CD31721040C004D72B3 /* PauseGame.m */; };
-		5D407CDA17211B4D004D72B3 /* EndGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D407CD917211B4D004D72B3 /* EndGame.m */; };
 		5DC83C84171CE6C0003CFCAD /* mainGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC83C83171CE6C0003CFCAD /* mainGame.m */; };
 		5DC83CCC171CF89F003CFCAD /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CC2171CF89E003CFCAD /* 1.png */; };
 		5DC83CCD171CF89F003CFCAD /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CC3171CF89E003CFCAD /* 2.png */; };
@@ -25,6 +24,7 @@
 		5DC83CD4171CF89F003CFCAD /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CCA171CF89F003CFCAD /* 9.png */; };
 		5DC83CD5171CF89F003CFCAD /* 10.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CCB171CF89F003CFCAD /* 10.png */; };
 		5DC83CD7171D0809003CFCAD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CD6171D0809003CFCAD /* Default-568h@2x.png */; };
+		6B4C181017221D080081F89A /* EndGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4C180F17221D080081F89A /* EndGame.m */; };
 		6B880BFE1713D1EB000737A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B880BFD1713D1EB000737A4 /* QuartzCore.framework */; };
 		6B880C001713D1EB000737A4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B880BFF1713D1EB000737A4 /* OpenGLES.framework */; };
 		6B880C021713D1EB000737A4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B880C011713D1EB000737A4 /* OpenAL.framework */; };
@@ -162,8 +162,6 @@
 		5D407CD0172102A1004D72B3 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		5D407CD21721040C004D72B3 /* PauseGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseGame.h; sourceTree = "<group>"; };
 		5D407CD31721040C004D72B3 /* PauseGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseGame.m; sourceTree = "<group>"; };
-		5D407CD817211B4D004D72B3 /* EndGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EndGame.h; path = ../EndGame.h; sourceTree = "<group>"; };
-		5D407CD917211B4D004D72B3 /* EndGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EndGame.m; path = ../EndGame.m; sourceTree = "<group>"; };
 		5DC83C82171CE6C0003CFCAD /* mainGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mainGame.h; sourceTree = "<group>"; };
 		5DC83C83171CE6C0003CFCAD /* mainGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mainGame.m; sourceTree = "<group>"; };
 		5DC83CC2171CF89E003CFCAD /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
@@ -177,6 +175,8 @@
 		5DC83CCA171CF89F003CFCAD /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
 		5DC83CCB171CF89F003CFCAD /* 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10.png; sourceTree = "<group>"; };
 		5DC83CD6171D0809003CFCAD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		6B4C180E17221D080081F89A /* EndGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndGame.h; sourceTree = "<group>"; };
+		6B4C180F17221D080081F89A /* EndGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndGame.m; sourceTree = "<group>"; };
 		6B880BFA1713D1EB000737A4 /* BlocksDestroyer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocksDestroyer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B880BFD1713D1EB000737A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6B880BFF1713D1EB000737A4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -500,6 +500,8 @@
 		6B880C0F1713D1EB000737A4 /* BlocksDestroyer */ = {
 			isa = PBXGroup;
 			children = (
+				6B4C180E17221D080081F89A /* EndGame.h */,
+				6B4C180F17221D080081F89A /* EndGame.m */,
 				6B880D871713D1EE000737A4 /* AppDelegate.h */,
 				6B880D881713D1EE000737A4 /* AppDelegate.m */,
 				6B880D8D1713D1EE000737A4 /* IntroLayer.h */,
@@ -508,8 +510,6 @@
 				6B880C2A1713D1EB000737A4 /* libs */,
 				6B880D831713D1EE000737A4 /* Supporting Files */,
 				6B880D951713D341000737A4 /* Menu.h */,
-				5D407CD817211B4D004D72B3 /* EndGame.h */,
-				5D407CD917211B4D004D72B3 /* EndGame.m */,
 				5DC83C82171CE6C0003CFCAD /* mainGame.h */,
 				5DC83C83171CE6C0003CFCAD /* mainGame.m */,
 				6B880D961713D341000737A4 /* Menu.m */,
@@ -1094,7 +1094,7 @@
 				6B880D971713D341000737A4 /* Menu.m in Sources */,
 				5DC83C84171CE6C0003CFCAD /* mainGame.m in Sources */,
 				5D407CD41721040C004D72B3 /* PauseGame.m in Sources */,
-				5D407CDA17211B4D004D72B3 /* EndGame.m in Sources */,
+				6B4C181017221D080081F89A /* EndGame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -429,6 +429,20 @@ CCSprite *copySprite;
     printf("\n");
 }
 
+- (void)dealloc
+{
+    int i, j;
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLUMNS; j++) {
+            [blocks_game[i][j] release];
+        }
+    }
+    
+    [points_label release];
+    [timer_label release];
+    [super dealloc];
+}
+
 #pragma mark GameKit delegate
 
 - (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController

@@ -13,5 +13,8 @@
     int totalPoints;
 }
 
-+(id) sceneWithParams: (int) points;
++ (id) sceneWithParams: (int) points;
+- (void) PlayAgain: (id) sender;
+- (void) GoToMainMenu: (id) sender;
+
 @end
