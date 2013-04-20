@@ -133,7 +133,8 @@ CCSprite *copySprite;
                 //Create and initialize the sprite
                 NSString *block_name = [NSString stringWithFormat:@"%i.png", indexGameBlocks[i][j]];
                 CCSprite *block = [CCSprite spriteWithFile:block_name];
-                [block setPosition:ccp(j * WIDTH_SPRITE + OFFSET, i * WIDTH_SPRITE + OFFSET)];
+                gameCenters[i][j] = CGPointMake(j * WIDTH_SPRITE + OFFSET, i * WIDTH_SPRITE + OFFSET);
+                [block setPosition:gameCenters[i][j]];
                 [self addChild:block];
                 //Add the sprite to a temporal array
                 blocks_game[i][j] = block;
@@ -294,7 +295,7 @@ CCSprite *copySprite;
         near = [self nearColumn:touchLocation forRow:self.activeRow];
         //
         displacement = self.activeColumn - near;
-        finalPosition.y = self.activeRow * WIDTH_SPRITE + OFFSET;
+        finalPosition.y = gameCenters[self.activeRow][0].y;
         for (i = 0; i < COLUMNS; i++) {
             tempIndex[i] = indexGameBlocks[self.activeRow][i];
             tempSprites[i] = blocks_game[self.activeRow][i];
@@ -310,7 +311,7 @@ CCSprite *copySprite;
                 tempSprites[j] = nil;
             }
             for (i = 0; i < COLUMNS; i++) {
-                finalPosition.x = i * WIDTH_SPRITE + OFFSET;
+                finalPosition.x = gameCenters[self.activeRow][i].x;
                 [blocks_game[self.activeRow][i] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
             }
         } else {
@@ -323,7 +324,7 @@ CCSprite *copySprite;
                 tempSprites[j] = nil;
             }
             for (i = 0; i < COLUMNS; i++) {
-                finalPosition.x = i * WIDTH_SPRITE + OFFSET;
+                finalPosition.x = gameCenters[self.activeRow][i].x;
                 [blocks_game[self.activeRow][i] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
             }
         }
@@ -333,7 +334,7 @@ CCSprite *copySprite;
         near = [self nearRow:touchLocation forColumn:self.activeColumn];
         //
         displacement = self.activeRow - near;
-        finalPosition.x = self.activeColumn * WIDTH_SPRITE + OFFSET;
+        finalPosition.x = gameCenters[0][self.activeColumn].x;
         for (i = 0; i < ROWS; i++) {
             tempIndex[i] = indexGameBlocks[i][self.activeColumn];
             tempSprites[i] = blocks_game[i][self.activeColumn];
@@ -349,7 +350,7 @@ CCSprite *copySprite;
                 tempSprites[j] = nil;
             }
             for (i = 0; i < ROWS; i++) {
-                finalPosition.y = i * WIDTH_SPRITE + OFFSET;
+                finalPosition.y = gameCenters[i][self.activeColumn].y;
                 [blocks_game[i][self.activeColumn] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
             }
         } else {
@@ -362,7 +363,7 @@ CCSprite *copySprite;
                 tempSprites[j] = nil;
             }
             for (i = 0; i < ROWS; i++) {
-                finalPosition.y = i * WIDTH_SPRITE + OFFSET;
+                finalPosition.y = gameCenters[i][self.activeColumn].y;
                 [blocks_game[i][self.activeColumn] runAction:[CCMoveTo actionWithDuration:0.2f position:finalPosition]];
             }
         }
@@ -378,13 +379,13 @@ CCSprite *copySprite;
     //copySprite = nil;
 }
 
-- (NSInteger)nearColumn:(CGPoint)location forRow:(NSInteger)row
+- (int)nearColumn:(CGPoint)location forRow:(int)row
 {
-    NSInteger x, i, c;
-    CGFloat diff, minimum;
+    int i, c;
+    CGFloat diff, minimum, x;
     minimum = 10000;
     for (i = 0; i < COLUMNS; i++) {
-        x = i * 60 + 32;
+        x = gameCenters[row][i].x;
         diff = fabsf(x - location.x);
         if (diff < minimum) {
             c = i;
@@ -394,13 +395,13 @@ CCSprite *copySprite;
     return c;
 }
 
-- (NSInteger)nearRow:(CGPoint)location forColumn:(NSInteger)column
+- (int)nearRow:(CGPoint)location forColumn:(int)column
 {
-    NSInteger y, i, r;
-    CGFloat diff, minimum;
+    int i, r;
+    CGFloat diff, minimum, y;
     minimum = 10000;
     for (i = 0; i < ROWS; i++) {
-        y = i * 60 + 32;
+        y = gameCenters[i][column].y;
         diff = fabsf(y - location.y);
         if (diff < minimum) {
             r = i;
@@ -427,20 +428,6 @@ CCSprite *copySprite;
         printf("\n");
     }
     printf("\n");
-}
-
-- (void)dealloc
-{
-    int i, j;
-    for (i = 0; i < ROWS; i++) {
-        for (j = 0; j < COLUMNS; j++) {
-            [blocks_game[i][j] release];
-        }
-    }
-    
-    [points_label release];
-    [timer_label release];
-    [super dealloc];
 }
 
 #pragma mark GameKit delegate

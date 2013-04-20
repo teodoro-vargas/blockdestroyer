@@ -25,6 +25,7 @@
     CCLabelTTF *timer_label;
     CCSprite *blocks_game[ROWS][COLUMNS];
     int indexGameBlocks[ROWS][COLUMNS];
+    CGPoint gameCenters[ROWS][COLUMNS];
 }
 @property int pointsCounter;
 @property int timerCounter;
@@ -46,9 +47,8 @@
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event;
-- (NSInteger)nearColumn:(CGPoint)location forRow:(NSInteger)row;
-- (NSInteger)nearRow:(CGPoint)location forColumn:(NSInteger)column;
+- (int)nearColumn:(CGPoint)location forRow:(int)row;
+- (int)nearRow:(CGPoint)location forColumn:(int)column;
 - (void)debug;
-- (void)dealloc;
 
 @end
