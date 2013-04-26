@@ -240,22 +240,45 @@ CCSprite *copySprite;
         if (self.orientation == 0) {
             for (i = 0; i < COLUMNS; i++) {
                 finalPosition.x = touchLocation.x + (i - self.activeColumn) * DIST_CENTERS;
+                
+                // Movement to the left
+                if (dx < 0) {
+                    if (finalPosition.x < 0) {
+                        finalPosition.x += (COLUMNS * DIST_CENTERS);
+                    } else if (finalPosition.x > (gameCenters[self.activeRow][COLUMNS - 1].x + DIST_CENTERS / 2)) {
+                        finalPosition.x -= (COLUMNS * DIST_CENTERS);
+                    }
+                } else if (dx > 0) {
+                    // Movement to the right
+                    if (finalPosition.x > (gameCenters[self.activeRow][COLUMNS - 1].x + DIST_CENTERS / 2)) {
+                        finalPosition.x -= (COLUMNS * DIST_CENTERS);
+                    } else if (finalPosition.x < 0) {
+                        finalPosition.x += (COLUMNS * DIST_CENTERS);
+                    }
+                }
                 blocks_game[self.activeRow][i].position = finalPosition;
-            }
-            if (dx > 0) {
-                //NSLog(@"Moviendose horizontal a la derecha");
-            } else if (dx < 0) {
-                //NSLog(@"Moviendose horizontal a la izquierda");
             }
         } else if (self.orientation == 1) {
             for (i = 0; i < ROWS; i++) {
                 finalPosition.y = touchLocation.y + (i - self.activeRow) * DIST_CENTERS;
+                
+                // Down movement
+                if (dy < 0) {
+                    if (finalPosition.y < 0) {
+                        finalPosition.y += (ROWS * DIST_CENTERS);
+                    } else if (finalPosition.y > (gameCenters[ROWS - 1][self.activeColumn].y + DIST_CENTERS / 2)) {
+                        finalPosition.y -= (ROWS * DIST_CENTERS);
+                    }
+                } else if (dy > 0) {
+                    // Up movement
+                    if (finalPosition.y > (gameCenters[ROWS - 1][self.activeColumn].y + DIST_CENTERS / 2)) {
+                        finalPosition.y -= (ROWS * DIST_CENTERS);
+                    } else if (finalPosition.y < 0) {
+                        finalPosition.y += (ROWS * DIST_CENTERS);
+                    }
+                }
+                
                 blocks_game[i][self.activeColumn].position = finalPosition;
-            }
-            if (dy > 0) {
-                // NSLog(@"Moviendose vertical hacia arriba");
-            } else {
-                // NSLog(@"Moviendose vertical hacia abajo");
             }
         } else {
             NSLog(@"Direccion no especificada");
