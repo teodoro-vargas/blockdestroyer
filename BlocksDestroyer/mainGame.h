@@ -12,6 +12,7 @@
 
 #define kMinimumGestureLength 10
 #define kMaximumVariance 5
+#define GAME_DURATION 90
 #define ROWS 6
 #define COLUMNS 5
 #define NUM_SPRITES 10
