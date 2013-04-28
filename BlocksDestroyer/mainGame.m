@@ -32,7 +32,8 @@ CCSprite *copySprite;
 @synthesize orientation;
 @synthesize activeColumn;
 @synthesize activeRow;
-@synthesize timerCounter, pointsCounter;
+@synthesize timerCounter;
+@synthesize pointsCounter;
 // Helper class method that creates a Scene with the Menu as the only child
 + (CCScene *)scene
 {
@@ -51,7 +52,9 @@ CCSprite *copySprite;
 {
     // Always call 'super' init
     // Apple recommends to re-assign 'self' with the "super's" return value
-    if ((self = [super init])) {	
+    if ((self = [super init])) {
+        // Initial points: cero
+        self.pointsCounter = 0;
         //Fill the array with the first horizontal line blocks
         int indexAnt = 0;
         int random = 0;
@@ -112,8 +115,8 @@ CCSprite *copySprite;
         [self addChild:points_image];
         [self addChild:points_label];
         
-        //Set the timer couter to 30 seconds and then asign the value to the label
-        timerCounter = 10;
+        //Set the timer couter to 90 seconds and then asign the value to the label
+        timerCounter = GAME_DURATION;
         timer_label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", self.timerCounter]
                                 fontName:@"Marker Felt" fontSize:46];
         //Set the timer label position, color and add it to the layer
@@ -237,22 +240,45 @@ CCSprite *copySprite;
         if (self.orientation == 0) {
             for (i = 0; i < COLUMNS; i++) {
                 finalPosition.x = touchLocation.x + (i - self.activeColumn) * DIST_CENTERS;
+                
+                // Movement to the left
+                if (dx < 0) {
+                    if (finalPosition.x < 0) {
+                        finalPosition.x += (COLUMNS * DIST_CENTERS);
+                    } else if (finalPosition.x > (gameCenters[self.activeRow][COLUMNS - 1].x + DIST_CENTERS / 2)) {
+                        finalPosition.x -= (COLUMNS * DIST_CENTERS);
+                    }
+                } else if (dx > 0) {
+                    // Movement to the right
+                    if (finalPosition.x > (gameCenters[self.activeRow][COLUMNS - 1].x + DIST_CENTERS / 2)) {
+                        finalPosition.x -= (COLUMNS * DIST_CENTERS);
+                    } else if (finalPosition.x < 0) {
+                        finalPosition.x += (COLUMNS * DIST_CENTERS);
+                    }
+                }
                 blocks_game[self.activeRow][i].position = finalPosition;
-            }
-            if (dx > 0) {
-                //NSLog(@"Moviendose horizontal a la derecha");
-            } else if (dx < 0) {
-                //NSLog(@"Moviendose horizontal a la izquierda");
             }
         } else if (self.orientation == 1) {
             for (i = 0; i < ROWS; i++) {
                 finalPosition.y = touchLocation.y + (i - self.activeRow) * DIST_CENTERS;
+                
+                // Down movement
+                if (dy < 0) {
+                    if (finalPosition.y < 0) {
+                        finalPosition.y += (ROWS * DIST_CENTERS);
+                    } else if (finalPosition.y > (gameCenters[ROWS - 1][self.activeColumn].y + DIST_CENTERS / 2)) {
+                        finalPosition.y -= (ROWS * DIST_CENTERS);
+                    }
+                } else if (dy > 0) {
+                    // Up movement
+                    if (finalPosition.y > (gameCenters[ROWS - 1][self.activeColumn].y + DIST_CENTERS / 2)) {
+                        finalPosition.y -= (ROWS * DIST_CENTERS);
+                    } else if (finalPosition.y < 0) {
+                        finalPosition.y += (ROWS * DIST_CENTERS);
+                    }
+                }
+                
                 blocks_game[i][self.activeColumn].position = finalPosition;
-            }
-            if (dy > 0) {
-                // NSLog(@"Moviendose vertical hacia arriba");
-            } else {
-                // NSLog(@"Moviendose vertical hacia abajo");
             }
         } else {
             NSLog(@"Direccion no especificada");
@@ -373,10 +399,12 @@ CCSprite *copySprite;
     self.touchInSpriteRect = NO;
     self.activeColumn = 0;
     self.activeRow = 0;
-    //[touchedBlock stopAllActions];
     touchedBlock.scale /= 1.1;
-    //[self removeChild:copySprite cleanup:YES];
-    //copySprite = nil;
+
+    // Now, check if there are some points around and remove sprites
+    [self getPoints];
+    // Now, fill the empty spaces with some random sprites
+    [self fillNewSprites];
 }
 
 - (int)nearColumn:(CGPoint)location forRow:(int)row
@@ -411,9 +439,185 @@ CCSprite *copySprite;
     return r;
 }
 
+- (void)getPoints
+{
+    int i, j, equal;
+    BOOL points = NO;
+    while (!points) {
+        points = YES;
+        memset(processed, NO, sizeof(processed));
+        for (i = 0; i < ROWS; i++) {
+            for (j = 0; j < COLUMNS; j++) {
+                equal = [self checkEqualIndex:indexGameBlocks[i][j] posX:j posY:i];
+                if (equal >= 3) {
+                    equal = (equal - 2) * 5;
+                    points = NO;
+                    [self markToDelete:indexGameBlocks[i][j] posX:j posY:i];
+                    self.pointsCounter += equal;
+                    
+                    // Show the earned points in the game area
+                    CCLabelTTF *earnedPoints = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", equal] fontName:@"Marker Felt" fontSize:55];
+                    [earnedPoints setPosition:gameCenters[i][j]];
+                    [earnedPoints setColor:ccRED];
+                    [earnedPoints setOpacity:0.0];
+                    [self addChild:earnedPoints z:10];
+                    CCFadeIn *fadeIn = [CCFadeIn actionWithDuration:0.4];
+                    CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:0.4];
+                    CGPoint earnedPos = gameCenters[i][j];
+                    earnedPos.y += 30;
+                    CCMoveTo *moveTo = [CCMoveTo actionWithDuration:0.4 position:earnedPos];
+                    CCSpawn *spawnActions = [CCSpawn actionOne:fadeOut two:moveTo];
+                    CCCallBlockN *removeEarned = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+                        [node removeFromParentAndCleanup:YES];
+                    }];
+                    CCSequence *sequence = [CCSequence actions:fadeIn, spawnActions, removeEarned, nil];
+                    [earnedPoints runAction:sequence];
+                    // Play sound
+                    /* Fill this */
+                }
+            }
+        }
+        // Remove and move down the other sprites
+        [self destroyAdjacents];
+    }
+    // Update the pointer marker
+    [points_label setString:[NSString stringWithFormat:@"%i", self.pointsCounter]];
+}
+
+- (int)checkEqualIndex:(int)index posX:(int)x posY:(int)y
+{
+    int dx[4] = {0, 1, 0, -1};
+    int dy[4] = {-1, 0, 1, 0};
+    int i, nx, ny, total = 1;
+    
+    // Out of the matrix
+    if (x < 0 || y < 0 || x >= COLUMNS || y >= ROWS) {
+        return 0;
+    }
+    // Already processed
+    if (processed[y][x] == YES) {
+        return 0;
+    }
+    // Different index or marked to deleted or empty
+    if (indexGameBlocks[y][x] == TO_DELETED ||
+        indexGameBlocks[y][x] == EMPTY ||
+        indexGameBlocks[y][x] != index)
+    {
+        return 0;
+    }
+    // Change the index and check the cells around
+    processed[y][x] = YES;
+    for (i = 0; i < 4; i++) {
+        nx = x + dx[i];
+        ny = y + dy[i];
+        total += [self checkEqualIndex:index posX:nx posY:ny];
+    }
+    
+    return total;
+}
+
+- (void)markToDelete:(int)index posX:(int)x posY:(int)y
+{
+    int dx[4] = {0, 1, 0, -1};
+    int dy[4] = {-1, 0, 1, 0};
+    int i, nx, ny;
+    
+    // Out of the matrix
+    if (x < 0 || y < 0 || x >= COLUMNS || y >= ROWS) {
+        return;
+    }
+    // Different index
+    if (indexGameBlocks[y][x] != index) {
+        return;
+    }
+    // Marke to delete
+    indexGameBlocks[y][x] = TO_DELETED;
+    for (i = 0; i < 4; i++) {
+        nx = x + dx[i];
+        ny = y + dy[i];
+        [self markToDelete:index posX:nx posY:ny];
+    }
+}
+
+- (void)destroyAdjacents
+{
+    int i, j, z;
+    CCSprite *temporalSprite;
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLUMNS; j++) {
+            if (indexGameBlocks[i][j] == TO_DELETED) {
+                temporalSprite = blocks_game[i][j];
+                // [blocks_game[i][j] removeFromParentAndCleanup:YES];
+                z = i;
+                while (z < (ROWS - 1)) {
+                    // Move the sprite
+                    blocks_game[z][j] = blocks_game[z + 1][j];
+                    if (blocks_game[z][j] != nil) {
+                        [blocks_game[z][j] runAction:
+                         [CCMoveTo actionWithDuration:0.3f position:gameCenters[z][j]]];
+                    }
+                    // Move the index
+                    indexGameBlocks[z][j] = indexGameBlocks[z + 1][j];
+                    z++;
+                }
+                // Fill the up cell for this column
+                // Sprite = nil
+                blocks_game[z][j] = nil;
+                // Index = EMPTY
+                indexGameBlocks[z][j] = EMPTY;
+                
+                // Then, if the new value is TO_DELETED, go back one position
+                if (indexGameBlocks[i][j] == TO_DELETED) {
+                    --j;
+                }
+                
+                CCFiniteTimeAction *action1 = [CCFadeOut actionWithDuration:0.3f];
+                CCFiniteTimeAction *action2 = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+                    [node removeFromParentAndCleanup:YES];
+                }];
+                [temporalSprite runAction:
+                 [CCSequence actions:action1, action2, nil]];
+            }
+        }
+    }
+}
+
+- (void)fillNewSprites
+{
+    int i, j, temp;
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLUMNS; j++) {
+            if (indexGameBlocks[i][j] == EMPTY) {
+                if (j == 0) {
+                    temp = (arc4random() % NUM_SPRITES) + 1;
+                } else if (i == 0 && j != 0) {
+                    while ((temp = (arc4random() % NUM_SPRITES) + 1) == indexGameBlocks[i][j - 1]) {
+                        ;
+                    }
+                    
+                } else {
+                    do {
+                        temp = (arc4random() % NUM_SPRITES) + 1;
+                    } while (temp == indexGameBlocks[i - 1][j] || temp == indexGameBlocks[i][j - 1]);
+                }
+                indexGameBlocks[i][j] = temp;
+                NSString *block_name = [NSString stringWithFormat:@"%i.png", temp];
+                CCSprite *block = [CCSprite spriteWithFile:block_name];
+                [block setPosition:gameCenters[i][j]];
+                block.opacity = 0;
+                [self addChild:block];
+                [block runAction:
+                 [CCFadeIn actionWithDuration:0.5f]];
+                blocks_game[i][j] = block;
+            }
+        }
+    }
+}
+
 - (void)debug
 {
     int i, j;
+    printf("Indices:\n");
     for (i = 0; i < ROWS; i++) {
         for (j = 0; j < COLUMNS; j++) {
             printf("%d ", indexGameBlocks[i][j]);
