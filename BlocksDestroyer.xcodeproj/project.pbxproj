@@ -153,6 +153,12 @@
 		6B880D971713D341000737A4 /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B880D961713D341000737A4 /* Menu.m */; };
 		6B880D9A1713DA9D000737A4 /* myfirstbutton_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B880D981713DA9D000737A4 /* myfirstbutton_selected.png */; };
 		6B880D9B1713DA9D000737A4 /* myfirstbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B880D991713DA9D000737A4 /* myfirstbutton.png */; };
+		6BD22D95172F39D8000C84B4 /* Joel.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD22D93172F39D8000C84B4 /* Joel.png */; };
+		6BD22D96172F39D8000C84B4 /* Teo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD22D94172F39D8000C84B4 /* Teo.png */; };
+		6BD22D98172F3A2F000C84B4 /* AdventureTime_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD22D97172F3A2F000C84B4 /* AdventureTime_logo.png */; };
+		6BD22D9A172F3A85000C84B4 /* TreeHouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD22D99172F3A85000C84B4 /* TreeHouse.png */; };
+		6BD22D9F172F46B9000C84B4 /* About.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD22D9E172F46B9000C84B4 /* About.m */; };
+		6BD22DA3172F6CE0000C84B4 /* AdventureTime_brothers.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD22DA2172F6CE0000C84B4 /* AdventureTime_brothers.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -441,6 +447,13 @@
 		6B880D961713D341000737A4 /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
 		6B880D981713DA9D000737A4 /* myfirstbutton_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myfirstbutton_selected.png; sourceTree = "<group>"; };
 		6B880D991713DA9D000737A4 /* myfirstbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myfirstbutton.png; sourceTree = "<group>"; };
+		6BD22D93172F39D8000C84B4 /* Joel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Joel.png; sourceTree = "<group>"; };
+		6BD22D94172F39D8000C84B4 /* Teo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Teo.png; sourceTree = "<group>"; };
+		6BD22D97172F3A2F000C84B4 /* AdventureTime_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AdventureTime_logo.png; sourceTree = "<group>"; };
+		6BD22D99172F3A85000C84B4 /* TreeHouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TreeHouse.png; sourceTree = "<group>"; };
+		6BD22D9D172F46B9000C84B4 /* About.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = About.h; sourceTree = "<group>"; };
+		6BD22D9E172F46B9000C84B4 /* About.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = About.m; sourceTree = "<group>"; };
+		6BD22DA2172F6CE0000C84B4 /* AdventureTime_brothers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AdventureTime_brothers.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -515,6 +528,8 @@
 				6B880D961713D341000737A4 /* Menu.m */,
 				5D407CD21721040C004D72B3 /* PauseGame.h */,
 				5D407CD31721040C004D72B3 /* PauseGame.m */,
+				6BD22D9D172F46B9000C84B4 /* About.h */,
+				6BD22D9E172F46B9000C84B4 /* About.m */,
 			);
 			path = BlocksDestroyer;
 			sourceTree = "<group>";
@@ -528,6 +543,11 @@
 				5D1719601720E83B00A96E69 /* littleBoom.png */,
 				5D1719611720E83C00A96E69 /* littleClock.png */,
 				5DC83CC4171CF89E003CFCAD /* 3.png */,
+				6BD22D93172F39D8000C84B4 /* Joel.png */,
+				6BD22D97172F3A2F000C84B4 /* AdventureTime_logo.png */,
+				6BD22DA2172F6CE0000C84B4 /* AdventureTime_brothers.png */,
+				6BD22D99172F3A85000C84B4 /* TreeHouse.png */,
+				6BD22D94172F39D8000C84B4 /* Teo.png */,
 				5DC83CC5171CF89E003CFCAD /* 4.png */,
 				5D17195D1720E69A00A96E69 /* boom.png */,
 				5DC83CC6171CF89E003CFCAD /* 5.png */,
@@ -978,6 +998,11 @@
 				5D1719621720E83C00A96E69 /* littleBoom.png in Resources */,
 				5D1719631720E83C00A96E69 /* littleClock.png in Resources */,
 				5D407CD1172102A1004D72B3 /* pause.png in Resources */,
+				6BD22D95172F39D8000C84B4 /* Joel.png in Resources */,
+				6BD22D96172F39D8000C84B4 /* Teo.png in Resources */,
+				6BD22D98172F3A2F000C84B4 /* AdventureTime_logo.png in Resources */,
+				6BD22D9A172F3A85000C84B4 /* TreeHouse.png in Resources */,
+				6BD22DA3172F6CE0000C84B4 /* AdventureTime_brothers.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1095,6 +1120,7 @@
 				5DC83C84171CE6C0003CFCAD /* mainGame.m in Sources */,
 				5D407CD41721040C004D72B3 /* PauseGame.m in Sources */,
 				6B4C181017221D080081F89A /* EndGame.m in Sources */,
+				6BD22D9F172F46B9000C84B4 /* About.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

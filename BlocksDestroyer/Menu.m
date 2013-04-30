@@ -9,6 +9,7 @@
 // Import the interfaces
 #import "Menu.h"
 #import "mainGame.h"
+#import "About.h"
 
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
@@ -82,7 +83,7 @@
 
 - (void)about:(id)sender
 {
-    NSLog(@"Pressed About");
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[About node]]];
 }
 
 @end

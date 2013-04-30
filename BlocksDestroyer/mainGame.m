@@ -144,8 +144,17 @@ CCSprite *copySprite;
             }
         }
         
-        // register the touch handle events
+        // Register the touch handle events
         self.isTouchEnabled = YES;
+        
+        // Set the background image
+        background = [CCSprite spriteWithFile:@"TreeHouse.png"];
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        CGSize backgroundSize = background.contentSize;
+        background.scaleX = winSize.width / backgroundSize.width;
+        background.scaleY = winSize.height / backgroundSize.height;
+        background.position = CGPointMake(winSize.width / 2, winSize.height / 2);
+        [self addChild:background z:-2];
     }
     return self;
 }
@@ -473,7 +482,7 @@ CCSprite *copySprite;
                     CCSequence *sequence = [CCSequence actions:fadeIn, spawnActions, removeEarned, nil];
                     [earnedPoints runAction:sequence];
                     // Play sound
-                    /* Fill this */
+#pragma mark TODO
                 }
             }
         }
