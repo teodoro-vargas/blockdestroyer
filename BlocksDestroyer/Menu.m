@@ -63,7 +63,6 @@
 
 - (void)newGame:(id)sender
 {
-    //[[CCDirector sharedDirector] sendCleanupToScene];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
                                                transitionWithDuration:1
                                                scene:[mainGame node]]
