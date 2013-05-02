@@ -30,6 +30,7 @@
     CCLabelTTF *points_label;
     CCLabelTTF *timer_label;
     CCSprite *blocks_game[ROWS][COLUMNS];
+    CCSprite *background;
     int indexGameBlocks[ROWS][COLUMNS];
     BOOL processed[ROWS][COLUMNS];
     CGPoint gameCenters[ROWS][COLUMNS];
