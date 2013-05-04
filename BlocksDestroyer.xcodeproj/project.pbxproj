@@ -24,6 +24,9 @@
 		5DC83CD4171CF89F003CFCAD /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CCA171CF89F003CFCAD /* 9.png */; };
 		5DC83CD5171CF89F003CFCAD /* 10.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CCB171CF89F003CFCAD /* 10.png */; };
 		5DC83CD7171D0809003CFCAD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC83CD6171D0809003CFCAD /* Default-568h@2x.png */; };
+		6B466A6617359CE700EED3C3 /* points.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B466A6517359CE700EED3C3 /* points.mp3 */; };
+		6B466A6B1735A67400EED3C3 /* game_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B466A691735A67400EED3C3 /* game_sound.mp3 */; };
+		6B466A6C1735A67400EED3C3 /* menu_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B466A6A1735A67400EED3C3 /* menu_sound.mp3 */; };
 		6B4C181017221D080081F89A /* EndGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4C180F17221D080081F89A /* EndGame.m */; };
 		6B880BFE1713D1EB000737A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B880BFD1713D1EB000737A4 /* QuartzCore.framework */; };
 		6B880C001713D1EB000737A4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B880BFF1713D1EB000737A4 /* OpenGLES.framework */; };
@@ -181,6 +184,9 @@
 		5DC83CCA171CF89F003CFCAD /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
 		5DC83CCB171CF89F003CFCAD /* 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10.png; sourceTree = "<group>"; };
 		5DC83CD6171D0809003CFCAD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		6B466A6517359CE700EED3C3 /* points.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = points.mp3; sourceTree = "<group>"; };
+		6B466A691735A67400EED3C3 /* game_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = game_sound.mp3; sourceTree = "<group>"; };
+		6B466A6A1735A67400EED3C3 /* menu_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menu_sound.mp3; sourceTree = "<group>"; };
 		6B4C180E17221D080081F89A /* EndGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndGame.h; sourceTree = "<group>"; };
 		6B4C180F17221D080081F89A /* EndGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndGame.m; sourceTree = "<group>"; };
 		6B880BFA1713D1EB000737A4 /* BlocksDestroyer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocksDestroyer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -552,6 +558,9 @@
 				5D17195D1720E69A00A96E69 /* boom.png */,
 				5DC83CC6171CF89E003CFCAD /* 5.png */,
 				5DC83CC7171CF89E003CFCAD /* 6.png */,
+				6B466A6517359CE700EED3C3 /* points.mp3 */,
+				6B466A691735A67400EED3C3 /* game_sound.mp3 */,
+				6B466A6A1735A67400EED3C3 /* menu_sound.mp3 */,
 				5DC83CC8171CF89E003CFCAD /* 7.png */,
 				5DC83CC9171CF89E003CFCAD /* 8.png */,
 				5DC83CCA171CF89F003CFCAD /* 9.png */,
@@ -1003,6 +1012,9 @@
 				6BD22D98172F3A2F000C84B4 /* AdventureTime_logo.png in Resources */,
 				6BD22D9A172F3A85000C84B4 /* TreeHouse.png in Resources */,
 				6BD22DA3172F6CE0000C84B4 /* AdventureTime_brothers.png in Resources */,
+				6B466A6617359CE700EED3C3 /* points.mp3 in Resources */,
+				6B466A6B1735A67400EED3C3 /* game_sound.mp3 in Resources */,
+				6B466A6C1735A67400EED3C3 /* menu_sound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

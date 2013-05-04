@@ -12,6 +12,7 @@
 #import "EndGame.h"
 #import "CCTouchDelegateProtocol.h"
 #import "CCTouchDispatcher.h"
+#import "SimpleAudioEngine.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -20,6 +21,7 @@
 
 CCSprite *touchedBlock;
 CCSprite *copySprite;
+SimpleAudioEngine *audioEngine;
 
 #pragma mark - mainGame
 
@@ -155,6 +157,10 @@ CCSprite *copySprite;
         background.scaleY = winSize.height / backgroundSize.height;
         background.position = CGPointMake(winSize.width / 2, winSize.height / 2);
         [self addChild:background z:-2];
+        
+        // Audio engine
+        audioEngine = [SimpleAudioEngine sharedEngine];
+        [audioEngine playBackgroundMusic:@"game_sound.mp3" loop:YES];
     }
     return self;
 }
@@ -472,17 +478,20 @@ CCSprite *copySprite;
                     [self addChild:earnedPoints z:10];
                     CCFadeIn *fadeIn = [CCFadeIn actionWithDuration:0.4];
                     CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:0.4];
+                    CCCallBlockN *playSound = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+                        // Play sound
+                        [audioEngine playEffect:@"points.mp3"];
+                    }];
                     CGPoint earnedPos = gameCenters[i][j];
                     earnedPos.y += 30;
                     CCMoveTo *moveTo = [CCMoveTo actionWithDuration:0.4 position:earnedPos];
                     CCSpawn *spawnActions = [CCSpawn actionOne:fadeOut two:moveTo];
                     CCCallBlockN *removeEarned = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+                        // Remove points earned
                         [node removeFromParentAndCleanup:YES];
                     }];
-                    CCSequence *sequence = [CCSequence actions:fadeIn, spawnActions, removeEarned, nil];
+                    CCSequence *sequence = [CCSequence actions:playSound, fadeIn, spawnActions, removeEarned, nil];
                     [earnedPoints runAction:sequence];
-                    // Play sound
-#pragma mark TODO
                 }
             }
         }

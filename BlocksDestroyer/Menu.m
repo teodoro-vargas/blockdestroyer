@@ -10,6 +10,7 @@
 #import "Menu.h"
 #import "mainGame.h"
 #import "About.h"
+#import "SimpleAudioEngine.h"
 
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
@@ -58,6 +59,9 @@
         menu.position = ccp(size.width / 2, (size.height / 2) - 20);
         [menu alignItemsVerticallyWithPadding:20.0f];
         [self addChild:menu z:1];
+        
+        // Menu sound
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"menu_sound.mp3" loop:YES];
     }
     return self;
 }
