@@ -110,7 +110,7 @@ SimpleAudioEngine *audioEngine;
                                          fontName:@"Marker Felt" fontSize:46];
         //Set the points label position, color and add it to the layer
         points_label.position = ccp(80, 440);
-        points_label.color = ccYELLOW;
+        points_label.color = ccc3(255, 182, 56);
         //Create an image for the points
         CCSprite * points_image = [CCSprite spriteWithFile:@"littleBoom.png"];
         points_image.position = ccp(30, 440);
@@ -123,7 +123,7 @@ SimpleAudioEngine *audioEngine;
                                 fontName:@"Marker Felt" fontSize:46];
         //Set the timer label position, color and add it to the layer
         timer_label.position = ccp(290,440);
-        timer_label.color = ccYELLOW;
+        timer_label.color = ccc3(255, 182, 56);
         //Create an image for the points
         CCSprite * timer_image = [CCSprite spriteWithFile:@"littleClock.png"];
         timer_image.position = ccp(240, 440);
