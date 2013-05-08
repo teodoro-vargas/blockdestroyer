@@ -2,45 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<array>
-		<integer>0</integer>
-		<string></string>
-	</array>
-	<array>
-		<integer>0</integer>
-		<string></string>
-	</array>
-	<array>
-		<integer>0</integer>
-		<string></string>
-	</array>
-	<array>
-		<integer>0</integer>
-		<string></string>
-	</array>
-	<array>
-		<integer>0</integer>
-		<string></string>
-	</array>
-	<array>
-		<integer>0</integer>
-		<string></string>
-	</array>
-	<array>
-		<integer>0</integer>
-		<string></string>
-	</array>
-	<array>
-		<integer>0</integer>
-		<string></string>
-	</array>
-	<array>
-		<integer>0</integer>
-		<string></string>
-	</array>
-	<array>
-		<integer>0</integer>
-		<string></string>
-	</array>
+	<integer>0</integer>
+	<integer>0</integer>
+	<integer>0</integer>
+	<integer>0</integer>
+	<integer>0</integer>
+	<integer>0</integer>
+	<integer>0</integer>
+	<integer>0</integer>
+	<integer>0</integer>
+	<integer>0</integer>
 </array>
 </plist>

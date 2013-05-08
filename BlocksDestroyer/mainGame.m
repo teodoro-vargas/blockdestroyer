@@ -118,7 +118,7 @@ SimpleAudioEngine *audioEngine;
         [self addChild:points_label];
         
         //Set the timer couter to 90 seconds and then asign the value to the label
-        timerCounter = 13;
+        timerCounter = 90;
         timer_label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", self.timerCounter]
                                 fontName:@"Marker Felt" fontSize:46];
         //Set the timer label position, color and add it to the layer
@@ -173,7 +173,7 @@ SimpleAudioEngine *audioEngine;
     //If the remaining time is over, un schedule the function
     if (self.timerCounter <= 0) {
         [self unschedule:@selector(countDown:)];
-        [[CCDirector sharedDirector] sendCleanupToScene];
+        //[[CCDirector sharedDirector] sendCleanupToScene];
         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
                                                    transitionWithDuration:1
                                                    scene:[EndGame sceneWithParams:pointsCounter]]
@@ -201,7 +201,7 @@ SimpleAudioEngine *audioEngine;
 }
 
 -(void) pause: (id) sender{
-    [[CCDirector sharedDirector] pushScene:[ PauseGame node]];
+    [[CCDirector sharedDirector] pushScene:[PauseGame node]];
 }
 
 -(void) registerWithTouchDispatcher

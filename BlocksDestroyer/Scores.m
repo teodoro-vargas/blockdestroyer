@@ -21,19 +21,22 @@
 
 -(id)init{
     if( (self=[super init] )) {
+        // Background
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        CCSprite *background = [CCSprite spriteWithFile:@"TreeHouse.png"];
+        CGSize backgroundSize = background.contentSize;
+        background.scaleX = winSize.width / backgroundSize.width;
+        background.scaleY = winSize.height / backgroundSize.height;
+        background.position = CGPointMake(winSize.width / 2, winSize.height / 2);
+        [self addChild:background z:-2];
+        
         //Cargamos el contenido guardado en la plits con los puntajes
-        NSString * path = [[NSBundle mainBundle] pathForResource:@"scoresList" ofType:@"plist"];
-        NSArray * best_scores = [[NSArray alloc] initWithContentsOfFile:path];
+        // NSString * path = [[NSBundle mainBundle] pathForResource:@"scoresList" ofType:@"plist"];
+        // NSArray * best_scores = [[[NSArray alloc] initWithContentsOfFile:path] autorelease];
         
         //Create and initialize the menu items
         CGSize size = [[CCDirector sharedDirector] winSize];
-        CCLabelTTF *scores_label = [CCLabelTTF labelWithString:@"BestScores" fontName:@"Marker Felt" fontSize:46];
-        
-        
-        //METER LAS COSAS DENTRO DE UN CICLO ;)
-        CCLabelTTF *score_1 = [CCLabelTTF labelWithString:[[best_scores objectAtIndex:0] objectAtIndex:0] fontName:@"Marker Felt" fontSize:30];
-        
-        
+        CCLabelTTF *scores_label = [CCLabelTTF labelWithString:@"Best Scores" fontName:@"Marker Felt" fontSize:46];
         
         [CCMenuItemFont setFontName:@"Marker Felt"];
         [CCMenuItemFont setFontSize:36];
@@ -43,12 +46,10 @@
                                                    target:self selector:@selector(GoToMainMenu:)];
         //Set the position of the menu title and add it to the layer scene
         scores_label.position = ccp(size.width / 2, size.height - 50);
-        score_1.position = ccp(size.width / 2, size.height - 120);
         [self addChild: scores_label];
-        [self addChild: score_1];
         //Set the position of the menu content and add the content to the scene
         CCMenu *menu= [CCMenu menuWithItems: Quit, nil];
-        menu.position = ccp(size.width / 2, size.height - 480);
+        menu.position = ccp(size.width / 2, size.height - 440);
         [menu alignItemsVerticallyWithPadding:20.0f];
         [self addChild:menu];
         

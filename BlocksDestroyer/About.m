@@ -30,7 +30,7 @@
         CGFloat ratio;
         // Create and initialize the labels and items
         CGSize winSize = [[CCDirector sharedDirector] winSize];
-        CCSprite *background = [CCSprite spriteWithFile:@"AdventureTime_brothers.png"];
+        CCSprite *background = [CCSprite spriteWithFile:@"Credits.png"];
         background.position = CGPointMake(winSize.width / 2, winSize.height / 2);
         ratio = winSize.height / background.textureRect.size.height ;
         background.scale *= ratio;
@@ -51,36 +51,30 @@
         teoImage.scale /= 4;
         
         CCMenu *menu1 = [CCMenu menuWithItems:joelImage, teoImage, nil];
-        menu1.position = CGPointMake(60, winSize.height - 135);
+        menu1.position = CGPointMake(60, winSize.height - 275);
         [menu1 alignItemsVerticallyWithPadding:10];
         [self addChild:menu1];
         
         // Joel's labels
         CCLabelTTF *joelName = [CCLabelTTF labelWithString:@"Joel Garcia Verastica" fontName:@"Marker Felt" fontSize:24];
         CCLabelTTF *joelDescription = [CCLabelTTF labelWithString:@"ITC, sinaloense y\nboxeador" fontName:@"Marker Felt" fontSize:20];
-        joelName.position = CGPointMake(210, winSize.height - 70);
-        joelDescription.position = CGPointMake(200, winSize.height - 105);
+        joelName.position = CGPointMake(210, winSize.height - 210);
+        joelDescription.position = CGPointMake(200, winSize.height - 245);
         [self addChild:joelName];
         [self addChild:joelDescription];
         
         // Teo's labels
         CCLabelTTF *teoName = [CCLabelTTF labelWithString:@"Teodoro Vargas Cortes" fontName:@"Marker Felt" fontSize:24];
         CCLabelTTF *teoDescription = [CCLabelTTF labelWithString:@"ITC, costarricense y\nbicicletero" fontName:@"Marker Felt" fontSize:20];
-        teoName.position = CGPointMake(215, winSize.height - 180);
-        teoDescription.position = CGPointMake(200, winSize.height - 215);
+        teoName.position = CGPointMake(215, winSize.height - 320);
+        teoDescription.position = CGPointMake(200, winSize.height - 355);
         [self addChild:teoName];
         [self addChild:teoDescription];
         
         // Gratitude
         CCLabelTTF *gratitude = [CCLabelTTF labelWithString:@"Dedicado a Pendleton \"Pen\" Ward" fontName:@"Marker Felt" fontSize:22];
-        gratitude.position = CGPointMake(winSize.width / 2, winSize.height - 280);
+        gratitude.position = CGPointMake(winSize.width / 2, winSize.height - 405);
         [self addChild:gratitude];
-        CCSprite *logo = [CCSprite spriteWithFile:@"AdventureTime_logo.png"];
-        ratio = winSize.width / logo.textureRect.size.width;
-        logo.scale *= ratio;
-        logo.scaleY /= 1.2;
-        logo.position = CGPointMake(winSize.width / 2, winSize.height - 370);
-        [self addChild:logo];
         
         // Go to main menu
         CCMenuItemFont *go = [CCMenuItemFont itemWithString:@"Regresar al menu" target:self selector:@selector(gotoMainMenu:)];
