@@ -9,6 +9,8 @@
 // Import the interfaces
 #import "Menu.h"
 #import "mainGame.h"
+#import "Instructions.h"
+#import "Scores.h"
 #import "About.h"
 
 // Needed to obtain the Navigation Controller
@@ -72,12 +74,18 @@
 
 - (void)instructions:(id)sender
 {
-    NSLog(@"Pressed Instructions");
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
+                                               transitionWithDuration:1
+                                               scene:[Instructions node]]
+     ];
 }
 
 - (void)bestScores:(id)sender
 {
-    NSLog(@"Pressed Best Scores");
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
+                                               transitionWithDuration:1
+                                               scene:[Scores node]]
+     ];
 }
 
 - (void)about:(id)sender
