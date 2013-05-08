@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface EndGame : CCLayer {
-    int totalPoints;
+@interface EndGame : CCLayer
+{
 }
 
-+ (id) sceneWithParams: (int) points;
-- (void) PlayAgain: (id) sender;
-- (void) GoToMainMenu: (id) sender;
+@property (retain, nonatomic) NSNumber *t_points;
 
++ (id)nodeWithPoints:(int)points;
++ (id) sceneWithParams: (int) points;
+- (void) GoToMainMenu: (id) sender;
 @end

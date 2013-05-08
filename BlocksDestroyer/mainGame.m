@@ -103,7 +103,7 @@ CCSprite *copySprite;
         [self addChild:PauseButton z:1000];
         
         //Set the actuals points in the game
-        pointsCounter = 12;
+        pointsCounter = 0;
         points_label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", self.pointsCounter]
                                          fontName:@"Marker Felt" fontSize:46];
         //Set the points label position, color and add it to the layer
@@ -116,7 +116,7 @@ CCSprite *copySprite;
         [self addChild:points_label];
         
         //Set the timer couter to 90 seconds and then asign the value to the label
-        timerCounter = GAME_DURATION;
+        timerCounter = 13;
         timer_label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", self.timerCounter]
                                 fontName:@"Marker Felt" fontSize:46];
         //Set the timer label position, color and add it to the layer

@@ -10,6 +10,9 @@
 		5D17195E1720E69A00A96E69 /* boom.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D17195D1720E69A00A96E69 /* boom.png */; };
 		5D1719621720E83C00A96E69 /* littleBoom.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D1719601720E83B00A96E69 /* littleBoom.png */; };
 		5D1719631720E83C00A96E69 /* littleClock.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D1719611720E83C00A96E69 /* littleClock.png */; };
+		5D25203B17359B9F00611676 /* Instructions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D25203A17359B9F00611676 /* Instructions.m */; };
+		5D2520491735A37000611676 /* Scores.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2520481735A37000611676 /* Scores.m */; };
+		5D25204B1735B37200611676 /* scoresList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D25204A1735B37200611676 /* scoresList.plist */; };
 		5D407CD1172102A1004D72B3 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D407CD0172102A1004D72B3 /* pause.png */; };
 		5D407CD41721040C004D72B3 /* PauseGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D407CD31721040C004D72B3 /* PauseGame.m */; };
 		5DC83C84171CE6C0003CFCAD /* mainGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC83C83171CE6C0003CFCAD /* mainGame.m */; };
@@ -165,6 +168,11 @@
 		5D17195D1720E69A00A96E69 /* boom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boom.png; sourceTree = "<group>"; };
 		5D1719601720E83B00A96E69 /* littleBoom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = littleBoom.png; sourceTree = "<group>"; };
 		5D1719611720E83C00A96E69 /* littleClock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = littleClock.png; sourceTree = "<group>"; };
+		5D25203917359B9F00611676 /* Instructions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instructions.h; sourceTree = "<group>"; };
+		5D25203A17359B9F00611676 /* Instructions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instructions.m; sourceTree = "<group>"; };
+		5D2520471735A37000611676 /* Scores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scores.h; sourceTree = "<group>"; };
+		5D2520481735A37000611676 /* Scores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scores.m; sourceTree = "<group>"; };
+		5D25204A1735B37200611676 /* scoresList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scoresList.plist; sourceTree = "<group>"; };
 		5D407CD0172102A1004D72B3 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		5D407CD21721040C004D72B3 /* PauseGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseGame.h; sourceTree = "<group>"; };
 		5D407CD31721040C004D72B3 /* PauseGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseGame.m; sourceTree = "<group>"; };
@@ -529,7 +537,12 @@
 				5D407CD21721040C004D72B3 /* PauseGame.h */,
 				5D407CD31721040C004D72B3 /* PauseGame.m */,
 				6BD22D9D172F46B9000C84B4 /* About.h */,
+				5D2520471735A37000611676 /* Scores.h */,
+				5D2520481735A37000611676 /* Scores.m */,
 				6BD22D9E172F46B9000C84B4 /* About.m */,
+				5D25203917359B9F00611676 /* Instructions.h */,
+				5D25203A17359B9F00611676 /* Instructions.m */,
+				5D25204A1735B37200611676 /* scoresList.plist */,
 			);
 			path = BlocksDestroyer;
 			sourceTree = "<group>";
@@ -1003,6 +1016,7 @@
 				6BD22D98172F3A2F000C84B4 /* AdventureTime_logo.png in Resources */,
 				6BD22D9A172F3A85000C84B4 /* TreeHouse.png in Resources */,
 				6BD22DA3172F6CE0000C84B4 /* AdventureTime_brothers.png in Resources */,
+				5D25204B1735B37200611676 /* scoresList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1121,6 +1135,8 @@
 				5D407CD41721040C004D72B3 /* PauseGame.m in Sources */,
 				6B4C181017221D080081F89A /* EndGame.m in Sources */,
 				6BD22D9F172F46B9000C84B4 /* About.m in Sources */,
+				5D25203B17359B9F00611676 /* Instructions.m in Sources */,
+				5D2520491735A37000611676 /* Scores.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
